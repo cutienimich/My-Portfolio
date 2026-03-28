@@ -9,9 +9,11 @@
       "default",
       {
         "ignore": [
-          "backdrop-filter"
+          "backdrop-filter",
+          "-webkit-overflow-scrolling"
         ]
       }
-    ]
+    ],
+    "css-prefix-order": "off"
   }
 }

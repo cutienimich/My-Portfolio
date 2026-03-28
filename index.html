@@ -734,6 +734,15 @@ nav{
 }
 .badge-live{background:rgba(34,197,94,0.1);color:#4ade80;border:1px solid rgba(34,197,94,0.2);}
 .badge-done{background:var(--accentbg);color:var(--text2);border:1px solid var(--border2);}
+.proj-role-row{
+  display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 12px;
+  margin-bottom:14px;font-family:var(--body-font);
+}
+.proj-role-key{
+  font-size:10px;font-weight:700;letter-spacing:0.55px;
+  text-transform:uppercase;color:var(--text3);
+}
+.proj-role-value{font-size:13px;font-weight:600;color:var(--text);}
 .proj-desc{font-size:13px;color:var(--text2);line-height:1.8;margin-bottom:20px;font-family:var(--body-font);}
 .proj-sub-label{font-size:11px;font-weight:700;letter-spacing:0.5px;margin-bottom:8px;font-family:var(--body-font);}
 .proj-sub-label.p1{color:var(--accent);}
@@ -1048,6 +1057,92 @@ footer{
   </div>
 </section>
 
+<!-- ══════════════ PROJECTS ══════════════ -->
+<section id="projects" class="section">
+  <div class="sec-max">
+    <div class="sec-eyebrow reveal">Projects</div>
+    <h2 class="sec-title reveal d1">Things I've <span>Developed</span></h2>
+    <div class="proj-list">
+
+      <div class="proj-card reveal d1">
+        <div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
+            <div class="proj-name">SaliSense</div>
+            <span class="proj-badge badge-live">Active · School Project</span>
+          </div>
+          <div class="proj-role-row"><span class="proj-role-key">Role</span><span class="proj-role-value">Programmer</span></div>
+          <p class="proj-desc">AI-powered sentiment survey analyzer. Processes open-ended survey responses and surfaces structured, readable insights using NLP and machine learning.</p>
+          <div class="proj-cols">
+            <div><div class="proj-sub-label p1">Frontend</div><ul class="proj-ul"><li>React dashboard with live charts</li><li>Survey form builder UI</li><li>Real-time result visualization</li></ul></div>
+            <div><div class="proj-sub-label p2">Backend</div><ul class="proj-ul"><li>FastAPI REST endpoints</li><li>Python NLP pipeline</li><li>AI sentiment scoring engine</li></ul></div>
+          </div>
+          <div class="proj-sub-label p3" style="margin-bottom:8px;">Key Highlights</div>
+          <ul class="proj-ul"><li>Full stack from data input to visual analytics output</li><li>AI integration with custom-tuned NLP model</li><li>Currently active thesis project</li></ul>
+          <div class="proj-stack"><span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">React</span><span class="ptag">PostgreSQL</span><span class="ptag">NLP/AI</span></div>
+        </div>
+        <div class="arch-box">
+          <img class="arch-img" src="images/salisense.png" alt="SaliSense system architecture diagram" loading="lazy" />
+          <a href="https://salisense15.vercel.app/" class="plink">Live Demo ↗</a></div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal d2">
+        <div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
+            <div class="proj-name">SIS — Smart Inventory System</div>
+            <span class="proj-badge badge-done">Shipped</span>
+          </div>
+          <div class="proj-role-row"><span class="proj-role-key">Role</span><span class="proj-role-value">Programmer</span></div>
+          <p class="proj-desc">Full stack inventory management platform with real-time stock tracking, built on efficient data structures to handle business-scale operations reliably.</p>
+          <div class="proj-cols">
+            <div><div class="proj-sub-label p1">Frontend</div><ul class="proj-ul"><li>Dynamic stock dashboard</li><li>Real-time quantity tracking</li><li>Search & filter system</li></ul></div>
+            <div><div class="proj-sub-label p2">Backend</div><ul class="proj-ul"><li>PHP REST API layer</li><li>MySQL relational schema</li><li>Role-based access control</li></ul></div>
+          </div>
+          <div class="proj-sub-label p3" style="margin-bottom:8px;">Key Highlights</div>
+          <ul class="proj-ul"><li>End-to-end inventory workflow from procurement to dispatch</li><li>Efficient data structures for fast stock queries at scale</li><li>Admin, staff, and viewer role management</li></ul>
+          <div class="proj-stack"><span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">JavaScript</span><span class="ptag">HTML/CSS</span></div>
+        </div>
+        <div class="arch-box">
+          <div class="arch-title">System Architecture</div>
+          <div class="arch-nodes">
+            <div class="anode n1">JavaScript Frontend (Dashboard)</div>
+            <div class="arch-conn"></div>
+            <div class="arch-row"><div class="anode n2">PHP API</div><div class="anode n2">Auth Layer</div></div>
+            <div class="arch-conn"></div>
+            <div class="anode n3">MySQL Database</div>
+            <div class="arch-conn"></div>
+            <div class="arch-row"><div class="anode n4">Stock Engine</div><div class="anode n4">Report Engine</div></div>
+          </div>
+          <div class="proj-links"><a href="#" class="plink">GitHub ↗</a><a href="#" class="plink">Live Demo ↗</a></div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal d3">
+        <div>
+          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
+            <div class="proj-name">PAL — Gamified Learning Platform</div>
+            <span class="proj-badge badge-done">Shipped</span>
+          </div>
+          <div class="proj-role-row"><span class="proj-role-key">Role</span><span class="proj-role-value">Programmer</span></div>
+          <p class="proj-desc">E-learning platform with game mechanics — XP systems, challenge modules, and progress tracking that makes studying feel like leveling up.</p>
+          <div class="proj-cols">
+            <div><div class="proj-sub-label p1">Frontend</div><ul class="proj-ul"><li>React component-based UI</li><li>XP & progress bar system</li><li>Interactive quiz modules</li></ul></div>
+            <div><div class="proj-sub-label p2">Backend</div><ul class="proj-ul"><li>Node.js + Express API</li><li>PostgreSQL user & score DB</li><li>JWT authentication</li></ul></div>
+          </div>
+          <div class="proj-sub-label p3" style="margin-bottom:8px;">Key Highlights</div>
+          <ul class="proj-ul"><li>Game mechanics without sacrificing learning quality</li><li>Real-time XP and achievement system with persistent progress</li><li>Student and instructor role management</li></ul>
+          <div class="proj-stack"><span class="ptag">React</span><span class="ptag">Node.js</span><span class="ptag">Express.js</span><span class="ptag">PostgreSQL</span><span class="ptag">JWT</span></div>
+        </div>
+        <div class="arch-box">
+          <img class="arch-img" src="images/pal.png" alt="PAL — Gamified Learning Platform system architecture diagram" loading="lazy" />
+          <a href="https://gamified-study-session-web.vercel.app" class="plink" target="_blank" rel="noopener noreferrer">Live Demo ↗</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- SPECIALTY CARDS -->
 <div style="position:relative;z-index:1;padding:0 40px 80px;max-width:1180px;margin:0 auto;">
   <div class="spec-outer reveal">
@@ -1140,89 +1235,6 @@ footer{
       <div class="sk-row"><div class="sk-cat c3">Game Dev</div><div class="sk-chips"><span class="sc">Roblox Studio</span><span class="sc">Lua Scripting</span><span class="sc">Blender</span><span class="sc">3D Design</span></div></div>
       <div class="sk-row"><div class="sk-cat c4">Hardware</div><div class="sk-chips"><span class="sc">Arduino</span><span class="sc">Hardware Prototyping</span><span class="sc">Sensor Integration</span><span class="sc">IoT Systems</span></div></div>
       <div class="sk-row"><div class="sk-cat c1">Tools</div><div class="sk-chips"><span class="sc">Git</span><span class="sc">GitHub</span><span class="sc">VS Code</span><span class="sc">AI Integration</span><span class="sc">API Integration</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════ PROJECTS ══════════════ -->
-<section id="projects" class="section">
-  <div class="sec-max">
-    <div class="sec-eyebrow reveal">Projects</div>
-    <h2 class="sec-title reveal d1">Things I've <span>Developed</span></h2>
-    <div class="proj-list">
-
-      <div class="proj-card reveal d1">
-        <div>
-          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
-            <div class="proj-name">SaliSense</div>
-            <span class="proj-badge badge-live">Active · School Project</span>
-          </div>
-          <p class="proj-desc">AI-powered sentiment survey analyzer. Processes open-ended survey responses and surfaces structured, readable insights using NLP and machine learning.</p>
-          <div class="proj-cols">
-            <div><div class="proj-sub-label p1">Frontend</div><ul class="proj-ul"><li>React dashboard with live charts</li><li>Survey form builder UI</li><li>Real-time result visualization</li></ul></div>
-            <div><div class="proj-sub-label p2">Backend</div><ul class="proj-ul"><li>FastAPI REST endpoints</li><li>Python NLP pipeline</li><li>AI sentiment scoring engine</li></ul></div>
-          </div>
-          <div class="proj-sub-label p3" style="margin-bottom:8px;">Key Highlights</div>
-          <ul class="proj-ul"><li>Full stack from data input to visual analytics output</li><li>AI integration with custom-tuned NLP model</li><li>Currently active thesis project</li></ul>
-          <div class="proj-stack"><span class="ptag">Python</span><span class="ptag">FastAPI</span><span class="ptag">React</span><span class="ptag">PostgreSQL</span><span class="ptag">NLP/AI</span></div>
-        </div>
-        <div class="arch-box">
-          <img class="arch-img" src="images/salisense.png" alt="SaliSense system architecture diagram" loading="lazy" />
-          <div class="proj-links"><a href="#" class="plink">GitHub ↗</a><a href="#" class="plink">Live Demo ↗</a></div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d2">
-        <div>
-          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
-            <div class="proj-name">SIS — Smart Inventory System</div>
-            <span class="proj-badge badge-done">Shipped</span>
-          </div>
-          <p class="proj-desc">Full stack inventory management platform with real-time stock tracking, built on efficient data structures to handle business-scale operations reliably.</p>
-          <div class="proj-cols">
-            <div><div class="proj-sub-label p1">Frontend</div><ul class="proj-ul"><li>Dynamic stock dashboard</li><li>Real-time quantity tracking</li><li>Search & filter system</li></ul></div>
-            <div><div class="proj-sub-label p2">Backend</div><ul class="proj-ul"><li>PHP REST API layer</li><li>MySQL relational schema</li><li>Role-based access control</li></ul></div>
-          </div>
-          <div class="proj-sub-label p3" style="margin-bottom:8px;">Key Highlights</div>
-          <ul class="proj-ul"><li>End-to-end inventory workflow from procurement to dispatch</li><li>Efficient data structures for fast stock queries at scale</li><li>Admin, staff, and viewer role management</li></ul>
-          <div class="proj-stack"><span class="ptag">PHP</span><span class="ptag">MySQL</span><span class="ptag">JavaScript</span><span class="ptag">HTML/CSS</span></div>
-        </div>
-        <div class="arch-box">
-          <div class="arch-title">System Architecture</div>
-          <div class="arch-nodes">
-            <div class="anode n1">JavaScript Frontend (Dashboard)</div>
-            <div class="arch-conn"></div>
-            <div class="arch-row"><div class="anode n2">PHP API</div><div class="anode n2">Auth Layer</div></div>
-            <div class="arch-conn"></div>
-            <div class="anode n3">MySQL Database</div>
-            <div class="arch-conn"></div>
-            <div class="arch-row"><div class="anode n4">Stock Engine</div><div class="anode n4">Report Engine</div></div>
-          </div>
-          <div class="proj-links"><a href="#" class="plink">GitHub ↗</a><a href="#" class="plink">Live Demo ↗</a></div>
-        </div>
-      </div>
-
-      <div class="proj-card reveal d3">
-        <div>
-          <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:10px;">
-            <div class="proj-name">PAL — Gamified Learning Platform</div>
-            <span class="proj-badge badge-done">Shipped</span>
-          </div>
-          <p class="proj-desc">E-learning platform with game mechanics — XP systems, challenge modules, and progress tracking that makes studying feel like leveling up.</p>
-          <div class="proj-cols">
-            <div><div class="proj-sub-label p1">Frontend</div><ul class="proj-ul"><li>React component-based UI</li><li>XP & progress bar system</li><li>Interactive quiz modules</li></ul></div>
-            <div><div class="proj-sub-label p2">Backend</div><ul class="proj-ul"><li>Node.js + Express API</li><li>PostgreSQL user & score DB</li><li>JWT authentication</li></ul></div>
-          </div>
-          <div class="proj-sub-label p3" style="margin-bottom:8px;">Key Highlights</div>
-          <ul class="proj-ul"><li>Game mechanics without sacrificing learning quality</li><li>Real-time XP and achievement system with persistent progress</li><li>Student and instructor role management</li></ul>
-          <div class="proj-stack"><span class="ptag">React</span><span class="ptag">Node.js</span><span class="ptag">Express.js</span><span class="ptag">PostgreSQL</span><span class="ptag">JWT</span></div>
-        </div>
-        <div class="arch-box">
-          <img class="arch-img" src="images/pal.png" alt="PAL — Gamified Learning Platform system architecture diagram" loading="lazy" />
-          <a href="https://gamified-study-session-web.vercel.app" class="plink">Live Demo ↗</a></div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
