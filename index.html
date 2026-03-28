@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="circuit">
+<html lang="en" data-theme="professional">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>Michelle Postrado </title>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&family=Inter:wght@300;400;500;600;700&family=Syne:wght@700;800&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Kalam:wght@400;700&display=swap" rel="stylesheet"/>
@@ -140,8 +140,35 @@ body{
 }
 
 /* ── THEME SWITCHER ── */
+.theme-sheet-scrim{
+  display:none;position:fixed;inset:0;z-index:9998;
+  background:rgba(0,0,0,0.45);
+  opacity:0;pointer-events:none;transition:opacity .3s ease;
+}
+.theme-sheet-scrim.is-visible{
+  opacity:1;pointer-events:auto;
+}
 #theme-switcher{
   position:fixed;bottom:28px;right:28px;z-index:9999;
+  display:flex;flex-direction:column;gap:8px;align-items:flex-end;
+}
+.theme-sheet-handle{
+  display:none;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:10px 16px 6px;border:none;cursor:pointer;
+  background:transparent;color:var(--text2);
+  font-family:var(--body-font);font-size:11px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.theme-sheet-handle-icon{
+  display:block;font-size:22px;line-height:1;color:var(--accent);
+  transition:transform .35s ease;
+}
+#theme-switcher.theme-sheet-open .theme-sheet-handle-icon{
+  transform:rotate(180deg);
+}
+.theme-sheet-panel{
   display:flex;flex-direction:column;gap:8px;align-items:flex-end;
 }
 .switcher-label{
@@ -151,9 +178,12 @@ body{
   text-transform:uppercase;
   transition:color .3s;
 }
-.switcher-btns{display:flex;gap:8px;}
+.switcher-btns{
+  display:flex;gap:10px;flex-wrap:nowrap;
+  -webkit-overflow-scrolling:touch;
+}
 .sw-btn{
-  width:44px;height:44px;border-radius:12px;
+  width:44px;height:44px;border-radius:12px;flex-shrink:0;
   border:2px solid transparent;
   cursor:pointer;transition:all .25s;
   position:relative;overflow:hidden;
@@ -217,6 +247,7 @@ nav{
 [data-theme="indie"] .nav-logo{color:var(--accent);letter-spacing:0px;}
 .nav-logo span{color:var(--text2);}
 [data-theme="professional"] .nav-logo span{font-style:italic;}
+.nav-logo em{color:var(--text2);font-style:italic;font-weight:600;}
 .nav-links{display:flex;gap:4px;list-style:none;}
 .nav-links a{
   font-size:13px;font-weight:500;color:var(--text2);
@@ -888,30 +919,100 @@ footer{
   footer{flex-direction:column;gap:8px;text-align:center;padding:20px;}
   .frow{grid-template-columns:1fr;}
   .exp-card{grid-template-columns:1fr;}
-  #theme-switcher{bottom:16px;right:16px;}
+  /* Theme sheet: collapsed handle (^); expand for chooser */
+  .theme-sheet-scrim{display:block;}
+  body{padding-bottom:calc(52px + env(safe-area-inset-bottom,0px));transition:padding-bottom .35s ease;}
+  body.theme-sheet-open{padding-bottom:calc(132px + env(safe-area-inset-bottom,0px));}
+  #theme-switcher{
+    left:12px;right:12px;bottom:0;
+    width:auto;max-width:none;
+    align-items:stretch;
+    gap:0;
+    padding:0 0 calc(8px + env(safe-area-inset-bottom,0px));
+    background:linear-gradient(to top,var(--bg) 0%,rgba(var(--nav-bg-rgb,8,12,20),0.92) 40%,transparent 100%);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-top:1px solid var(--border);
+    border-radius:16px 16px 0 0;
+    box-shadow:0 -8px 32px rgba(0,0,0,0.15);
+    transition:box-shadow .3s ease;
+  }
+  [data-theme="circuit"] #theme-switcher{
+    background:linear-gradient(to top,rgba(5,10,5,0.97) 0%,rgba(5,10,5,0.88) 50%,transparent 100%);
+  }
+  [data-theme="professional"] #theme-switcher{
+    background:linear-gradient(to top,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.9) 45%,transparent 100%);
+  }
+  [data-theme="indie"] #theme-switcher{
+    background:linear-gradient(to top,rgba(245,240,232,0.98) 0%,rgba(245,240,232,0.9) 45%,transparent 100%);
+  }
+  .theme-sheet-handle{display:flex;min-height:44px;padding:12px 16px 8px;}
+  .theme-sheet-panel{
+    align-items:stretch;
+    max-height:0;opacity:0;
+    pointer-events:none;
+    overflow:hidden;
+    transition:max-height .4s ease,opacity .3s ease,margin .3s ease;
+  }
+  #theme-switcher.theme-sheet-open .theme-sheet-panel{
+    max-height:220px;opacity:1;pointer-events:auto;
+    margin-top:4px;overflow:visible;
+  }
+  .switcher-label{
+    text-align:center;width:100%;
+    margin-bottom:4px;padding:0 8px;
+  }
+  .switcher-btns{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    overscroll-behavior-x:contain;
+    scroll-snap-type:x mandatory;
+    scroll-padding-inline:16px;
+    padding:4px 16px 12px;
+    gap:12px;
+    justify-content:flex-start;
+  }
+  .switcher-btns::-webkit-scrollbar{height:4px;}
+  .switcher-btns::-webkit-scrollbar-thumb{
+    background:var(--border2);border-radius:4px;
+  }
+  .switcher-btns::-webkit-scrollbar-track{background:transparent;}
+  .sw-btn{scroll-snap-align:center;}
+  .sw-btn::after{
+    bottom:auto;top:calc(100% + 6px);right:auto;left:50%;
+    transform:translate(-50%,-4px);
+  }
+  .sw-btn:hover::after{transform:translate(-50%,0);}
 }
 </style>
 </head>
 <body>
 
 <canvas id="bg-canvas"></canvas>
+<div id="theme-sheet-scrim" class="theme-sheet-scrim" aria-hidden="true"></div>
 
 <!-- ══ THEME SWITCHER ══ -->
 <div id="theme-switcher">
-  <div class="switcher-label">Choose theme</div>
-  <div class="switcher-btns">
-    <button class="sw-btn sw-circuit active" data-theme="circuit" data-tip="Circuit" onclick="setTheme('circuit',this)"><span>⬡</span></button>
-    <button class="sw-btn sw-pro" data-theme="professional" data-tip="Professional" onclick="setTheme('professional',this)"><span>◻</span></button>
-    <button class="sw-btn sw-dark" data-theme="darkblue" data-tip="Dark Blue" onclick="setTheme('darkblue',this)"><span>◈</span></button>
-    <button class="sw-btn sw-real" data-theme="realism" data-tip="Realism" onclick="setTheme('realism',this)"><span>◉</span></button>
-    <button class="sw-btn sw-indie" data-theme="indie" data-tip="Indie" onclick="setTheme('indie',this)"><span>✦</span></button>
+  <button type="button" class="theme-sheet-handle" id="theme-sheet-handle" aria-expanded="false" aria-controls="theme-sheet-panel" aria-label="Open theme picker">
+    <span class="theme-sheet-handle-icon" aria-hidden="true">⌃</span>
+  </button>
+  <div class="theme-sheet-panel" id="theme-sheet-panel" role="region" aria-label="Theme options">
+    <div class="switcher-label">Choose theme</div>
+    <div class="switcher-btns">
+      <button class="sw-btn sw-circuit" data-theme="circuit" data-tip="Circuit" onclick="setTheme('circuit',this)"><span>⬡</span></button>
+      <button class="sw-btn sw-pro active" data-theme="professional" data-tip="Professional" onclick="setTheme('professional',this)"><span>◻</span></button>
+      <button class="sw-btn sw-dark" data-theme="darkblue" data-tip="Dark Blue" onclick="setTheme('darkblue',this)"><span>◈</span></button>
+      <button class="sw-btn sw-real" data-theme="realism" data-tip="Realism" onclick="setTheme('realism',this)"><span>◉</span></button>
+      <button class="sw-btn sw-indie" data-theme="indie" data-tip="Indie" onclick="setTheme('indie',this)"><span>✦</span></button>
+    </div>
   </div>
 </div>
 
 <!-- ══ NAV ══ -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo" id="nav-logo">MP<span>.dev</span></a>
+    <a href="#" class="nav-logo" id="nav-logo">Michelle <em>Postrado</em></a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -991,7 +1092,7 @@ footer{
       <div class="acard full reveal d1">
         <div class="acard-label a1">Who I Am</div>
         <p class="acard-text">
-          I'm a <strong>full stack developer</strong> who doesn't stop at the browser. I architect backends, design database schemas, wire up Arduino sensors, and script game worlds in Roblox. 2nd Year BSIT college student — already shipping systems that solve real business problems. Currently targeting <strong>cybersecurity</strong> as my next frontier.
+          I'm a <strong>full stack developer</strong> who doesn't stop at the browser. I architect backends, design database schemas, wire up Arduino sensors, and script game worlds in Roblox.I am a 2nd Year BSIT college student — already developed systems that solve real business problems. Currently targeting <strong>cybersecurity</strong> as my next frontier.
         </p>
         <div class="quote">"There's no such failure if you're trying."</div>
       </div>
@@ -1185,14 +1286,14 @@ footer{
   P.prototype.tick=function(){var dx=this.x-mx,dy=this.y-my,d=Math.sqrt(dx*dx+dy*dy);if(d<FORCE&&d>0){var f=(FORCE-d)/FORCE*.5;this.vx+=(dx/d)*f*.7;this.vy+=(dy/d)*f*.7;}this.vx*=.988;this.vy*=.988;this.x+=this.vx;this.y+=this.vy;this.ph+=this.ps;if(this.x<0)this.x=W;if(this.x>W)this.x=0;if(this.y<0)this.y=H;if(this.y>H)this.y=0;};
   for(var i=0;i<N;i++)pts.push(new P());
 
-  var theme='circuit';
+  var theme='professional';
   var colors={circuit:'0,255,65',professional:'26,92,255',darkblue:'59,130,246',realism:'79,142,247',indie:'200,75,47'};
 
   window._setCanvasTheme=function(t){theme=t;};
 
   function draw(){
     ctx.clearRect(0,0,W,H);
-    var col=colors[theme]||colors.circuit;
+    var col=colors[theme]||colors.professional;
 
     /* grid for circuit only */
     if(theme==='circuit'){
@@ -1234,6 +1335,20 @@ footer{
 })();
 
 /* ── THEME SWITCHER ── */
+function closeThemeSheetMobile(){
+  if(!window.matchMedia('(max-width:900px)').matches)return;
+  var sw=document.getElementById('theme-switcher');
+  var scrim=document.getElementById('theme-sheet-scrim');
+  var h=document.getElementById('theme-sheet-handle');
+  if(sw){sw.classList.remove('theme-sheet-open');}
+  document.body.classList.remove('theme-sheet-open');
+  if(scrim){scrim.classList.remove('is-visible');scrim.setAttribute('aria-hidden','true');}
+  if(h){
+    h.setAttribute('aria-expanded','false');
+    h.setAttribute('aria-label','Open theme picker');
+  }
+}
+
 function setTheme(t,btn){
   document.documentElement.setAttribute('data-theme',t);
   document.querySelectorAll('.sw-btn').forEach(function(b){b.classList.remove('active');});
@@ -1255,7 +1370,91 @@ function setTheme(t,btn){
     el.classList.remove('in');
     setTimeout(function(){if(isInView(el))el.classList.add('in');},50);
   });
+
+  closeThemeSheetMobile();
 }
+
+(function(){
+  var sw=document.getElementById('theme-switcher');
+  var handle=document.getElementById('theme-sheet-handle');
+  var scrim=document.getElementById('theme-sheet-scrim');
+  if(!sw||!handle)return;
+
+  function isMobile(){return window.matchMedia('(max-width:900px)').matches;}
+
+  function setSheetOpen(open){
+    if(!isMobile())return;
+    sw.classList.toggle('theme-sheet-open',open);
+    document.body.classList.toggle('theme-sheet-open',open);
+    handle.setAttribute('aria-expanded',open?'true':'false');
+    handle.setAttribute('aria-label',open?'Close theme picker':'Open theme picker');
+    if(scrim){
+      scrim.classList.toggle('is-visible',open);
+      scrim.setAttribute('aria-hidden',open?'false':'true');
+    }
+  }
+
+  function toggleSheet(){
+    if(!isMobile())return;
+    setSheetOpen(!sw.classList.contains('theme-sheet-open'));
+  }
+
+  var touchY0=null;
+  var touchMoved=false;
+  var suppressClick=false;
+
+  handle.addEventListener('touchstart',function(e){
+    if(e.touches.length!==1)return;
+    touchY0=e.touches[0].clientY;
+    touchMoved=false;
+    suppressClick=false;
+  },{passive:true});
+
+  handle.addEventListener('touchmove',function(e){
+    if(touchY0==null||!e.touches.length)return;
+    if(Math.abs(e.touches[0].clientY-touchY0)>12)touchMoved=true;
+  },{passive:true});
+
+  handle.addEventListener('touchend',function(e){
+    if(touchY0==null||!e.changedTouches.length){touchY0=null;return;}
+    if(!isMobile()){touchY0=null;return;}
+    var dy=e.changedTouches[0].clientY-touchY0;
+    touchY0=null;
+    if(touchMoved){
+      if(dy<-22){
+        setSheetOpen(true);
+        suppressClick=true;
+      } else if(dy>22){
+        setSheetOpen(false);
+        suppressClick=true;
+      }
+    }
+  },{passive:true});
+
+  handle.addEventListener('click',function(e){
+    e.stopPropagation();
+    if(suppressClick){suppressClick=false;return;}
+    toggleSheet();
+  });
+
+  if(scrim){
+    scrim.addEventListener('click',function(){setSheetOpen(false);});
+  }
+
+  window.addEventListener('keydown',function(e){
+    if(e.key==='Escape')closeThemeSheetMobile();
+  });
+
+  window.addEventListener('resize',function(){
+    if(!isMobile()){
+      sw.classList.remove('theme-sheet-open');
+      document.body.classList.remove('theme-sheet-open');
+      if(scrim){scrim.classList.remove('is-visible');scrim.setAttribute('aria-hidden','true');}
+      handle.setAttribute('aria-expanded','false');
+      handle.setAttribute('aria-label','Open theme picker');
+    }
+  });
+})();
 
 function isInView(el){
   var r=el.getBoundingClientRect();
