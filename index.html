@@ -277,7 +277,14 @@ nav{
 .nav-cta:hover{transform:translateY(-1px);filter:brightness(1.1);}
 
 /* ── HERO ── */
-
+#hero{
+  position:relative;z-index:1;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:80px 40px 60px;
+  overflow:hidden;
+  text-align:center;flex-direction:column;
+}
 
 /* circuit grid */
 [data-theme="circuit"] #hero::before{
@@ -990,31 +997,6 @@ footer{
   }
   .sw-btn:hover::after{transform:translate(-50%,0);}
 }
-/* ── HERO TWO-COLUMN LAYOUT (PHOTO) ── */
-#hero{
-    position: relative;
-    z-index: 1;
-
-    min-height: 100vh;
-
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    align-items:center;
-
-    max-width:1180px;
-    margin:0 auto;
-
-    padding:80px 40px 60px;
-
-    gap:60px;
-
-    overflow:hidden;
-
-    text-align:left;
-}
-.hero-left{display:flex;flex-direction:column;}
-.hero-tag,.hero-pills,.hero-btns{justify-content:flex-start;}
-
 /* ── TICKER ── */
 .ticker-wrap{
   overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
