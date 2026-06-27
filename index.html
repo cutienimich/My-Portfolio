@@ -997,27 +997,19 @@ footer{
     transform:translate(-50%,-4px);
   }
   .sw-btn:hover::after{transform:translate(-50%,0);}
-}/* ── HERO TWO-COLUMN LAYOUT (FORCE OVERRIDE) ── */
-body #hero{
-  display:grid !important;
-  grid-template-columns:1fr 1fr !important;
-  text-align:left !important;
-  align-items:center !important;
+}/* ── HERO TWO-COLUMN LAYOUT (PHOTO) ── */
+#hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  text-align:left;align-items:center;
   max-width:1180px;margin:0 auto;gap:60px;
-  flex-direction:unset;
 }
-body .hero-left{
-  display:flex;flex-direction:column;
-  text-align:left;align-items:flex-start;
-}
-body .hero-tag,body .hero-pills,body .hero-btns{
-  justify-content:flex-start !important;
-}
+.hero-left{display:flex;flex-direction:column;}
+.hero-tag,.hero-pills,.hero-btns{justify-content:flex-start;}
 
 /* ── TICKER ── */
 .ticker-wrap{
   overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  padding:9px 0;margin-top:20px;width:100%;
+  padding:9px 0;margin-top:20px;
 }
 .ticker-track{display:flex;width:max-content;animation:ticker 28s linear infinite;}
 .ticker-track span{
@@ -1029,10 +1021,7 @@ body .hero-tag,body .hero-pills,body .hero-btns{
 @keyframes ticker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
 /* ── HERO PHOTO ── */
-body .hero-right{
-  display:flex !important;align-items:center;justify-content:center;
-  position:relative;width:100%;
-}
+.hero-right{display:flex;align-items:center;justify-content:center;position:relative;}
 .hero-photo-wrap{position:relative;width:100%;max-width:420px;}
 .hero-photo-frame{
   width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:var(--radius-lg);
@@ -1054,9 +1043,9 @@ body .hero-right{
 }
 
 @media(max-width:900px){
-  body #hero{grid-template-columns:1fr !important;text-align:center !important;gap:40px;}
-  body .hero-left{align-items:center;text-align:center;}
-  body .hero-tag,body .hero-pills,body .hero-btns{justify-content:center !important;}
+  #hero{grid-template-columns:1fr;text-align:center;gap:40px;}
+  .hero-left{align-items:center;}
+  .hero-tag,.hero-pills,.hero-btns{justify-content:center;}
   .hero-photo-wrap{max-width:280px;}
 }
 </style>
