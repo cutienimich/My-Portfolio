@@ -999,9 +999,25 @@ footer{
 }
 /* ── HERO TWO-COLUMN LAYOUT (PHOTO) ── */
 #hero{
-  display:grid;grid-template-columns:1fr 1fr;
-  text-align:left;align-items:center;
-  max-width:1180px;margin:0 auto;gap:60px;
+    position: relative;
+    z-index: 1;
+
+    min-height: 100vh;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    align-items:center;
+
+    max-width:1180px;
+    margin:0 auto;
+
+    padding:80px 40px 60px;
+
+    gap:60px;
+
+    overflow:hidden;
+
+    text-align:left;
 }
 .hero-left{display:flex;flex-direction:column;}
 .hero-tag,.hero-pills,.hero-btns{justify-content:flex-start;}
